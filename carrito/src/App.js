@@ -11,7 +11,7 @@ function App() {
 
 
   //Listado de productos
-const [ productos, guardarProductos ] = useState([
+const [productos, guardarProductos] = useState([
   { id: 1, nombre: 'Camiseta', precio: 30},
   { id: 2, nombre: 'Cinturón', precio: 20},
   { id: 3, nombre: 'Pantalón', precio: 40},
@@ -43,10 +43,10 @@ const fecha = new Date().getFullYear()
     
       {productos.map(producto => (
       <Producto 
-        key={producto.id}
+        key={producto.id} // Siempre pasar algo que sea único
         producto={producto}
-        productos={productos}
-        carrito={carrito}
+        productos = {productos}
+        carrito = {carrito}
         agregarProductoACArrito= {agregarProductoACArrito}
       />
       )) }
