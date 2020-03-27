@@ -134,6 +134,7 @@ h2 {
 }
 
 .one-half{
-  width: 50%;
+  width: 48%;
+  padding: 1%;
   float: left;
 }

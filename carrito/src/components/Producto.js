@@ -44,6 +44,7 @@ const Producto = ({ producto, productos, carrito, agregarProductoACArrito }) => 
                 >
                 Eliminar</button>
             )
+            
             }        
 
         </div>

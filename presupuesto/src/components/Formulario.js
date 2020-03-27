@@ -3,26 +3,26 @@ import Error from './Error'
 import Shortid from 'shortid'
 
 
-const Formulario = ({guardarGasto}) => {
+const Formulario = ({guardarGasto, seHaCreadoGasto}) => {
 
     // Aquí lo que queremos es guardar en una constante el concepto y en otra la cantidad
 
-    const [ concepto, guardarConcepto] = useState('')
-    const [ cantidad, guardarCantidad] = useState(0)
-    const [ error, guardarError ] = useState(false)
+    const [ concepto, guardarConcepto] = useState('');
+    const [ cantidad, guardarCantidad] = useState(0);
+    const [ error, guardarError ] = useState(false);
 
 
     // onChange lo he establecido en los propior inputs
 
     const onSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
 
         if(concepto.trim() === '' || cantidad < 1 || isNaN(cantidad)) {
             guardarError(true);
             return;
         }
 
-        guardarError(false)
+        guardarError(false);
 
         const gasto = {
             concepto,
@@ -30,11 +30,16 @@ const Formulario = ({guardarGasto}) => {
             id: Shortid.generate()
         }
 
-        guardarGasto(gasto)
+        // Recoger valores y pasarlos a app
+
+        guardarGasto(gasto);
+        seHaCreadoGasto(true);
 
 
+        // resetear el form
 
-
+        guardarConcepto('');
+        guardarCantidad(0);
 
     }
     
@@ -43,15 +48,16 @@ const Formulario = ({guardarGasto}) => {
     return ( 
         <div className="contenido-principal contenido">
 
+            <form
+                
+                onSubmit= {onSubmit}
+
+            >
+
             <h2>Agrega tus Gastos Aquí</h2>
 
             { error ? <Error mensaje="Ambos campos son obligatorios" /> : null }
 
-            <form
-            
-                onSubmit= {onSubmit}
-
-            >
                 
             <div className="campo">
 
